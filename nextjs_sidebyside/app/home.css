@@ -1,0 +1,1059 @@
+.deimos-page {
+  --void: #0a0a0f;
+  --surface: #0f0a12;
+  --card: #ffffff08;
+  --border: #ffffff0d;
+  --crimson: #c41e3a;
+  --hot: #ff2d55;
+  --glow: #ff2d5540;
+  --text: #e8edf2;
+  --muted: #6b7f90;
+  --mono: #a8ff78;
+  min-height: 100vh;
+  background: var(--void);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.deimos-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.deimos-page nav:not(.deimos-nav) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.deimos-page .logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.deimos-page .logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--crimson);
+  box-shadow: 0 0 14px var(--hot);
+  animation: deimos-pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes deimos-pulse-dot {
+  0%, 100% { box-shadow: 0 0 14px var(--hot); }
+  50% { box-shadow: 0 0 28px var(--hot), 0 0 50px var(--glow); }
+}
+
+.deimos-page .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.deimos-page .nav-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.deimos-page .nav-link:hover {
+  color: var(--text);
+}
+
+.deimos-page .nav-cta {
+  background: var(--crimson);
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 20px rgba(196, 30, 58, 0.3);
+}
+
+.deimos-page .nav-cta:hover {
+  background: var(--hot);
+  box-shadow: 0 0 30px rgba(255, 45, 85, 0.5);
+  transform: translateY(-1px);
+}
+
+.deimos-page .nav-cta-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.deimos-page .nav-cta-outline:hover {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+}
+
+.deimos-page .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.deimos-page .ticker-wrap {
+  position: relative;
+  overflow: hidden;
+  background: rgba(196, 30, 58, 0.06);
+  border-top: 1px solid rgba(196, 30, 58, 0.15);
+  border-bottom: 1px solid rgba(196, 30, 58, 0.15);
+  padding: 0.5rem 0;
+  margin-top: 72px;
+  white-space: nowrap;
+}
+
+.deimos-page .ticker-track {
+  display: inline-flex;
+  gap: 3rem;
+  animation: deimos-ticker 40s linear infinite;
+}
+
+.deimos-page .ticker-item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+}
+
+.deimos-page .ticker-item .up { color: #22c55e; }
+.deimos-page .ticker-item .dn { color: #ef4444; }
+
+@keyframes deimos-ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.deimos-page .hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+}
+
+.deimos-page .hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(196, 30, 58, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 30, 58, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+}
+
+.deimos-page .deimos-wrap {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto 3rem;
+  perspective: 800px;
+}
+
+.deimos-page .deimos-sphere {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 35% 35%, #3d0a16 0%, #1a0508 40%, #0a0209 100%);
+  box-shadow:
+    inset -30px -20px 60px rgba(0, 0, 0, 0.8),
+    inset 15px 10px 40px rgba(196, 30, 58, 0.25),
+    0 0 60px rgba(196, 30, 58, 0.3),
+    0 0 120px rgba(196, 30, 58, 0.15),
+    0 0 200px rgba(196, 30, 58, 0.08);
+  animation: deimos-float 6s ease-in-out infinite, deimos-flicker 8s ease-in-out infinite;
+}
+
+.deimos-page .deimos-sphere::before {
+  content: '';
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  top: 30%;
+  left: 25%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+  box-shadow:
+    40px 20px 0 -5px rgba(0, 0, 0, 0.3),
+    -10px 55px 0 -8px rgba(0, 0, 0, 0.25),
+    65px -5px 0 -10px rgba(0, 0, 0, 0.2);
+}
+
+.deimos-page .deimos-sphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 100, 100, 0.12) 0%, transparent 60%);
+}
+
+@keyframes deimos-float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-16px); }
+}
+
+@keyframes deimos-flicker {
+  0%, 100% { opacity: 1; }
+  95% { opacity: 0.97; }
+  96% { opacity: 0.85; }
+  97% { opacity: 1; }
+}
+
+/* ── Sphere label ─────────────────────────────── */
+.deimos-page .sphere-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  pointer-events: none;
+  z-index: 2;
+  animation: deimos-float 6s ease-in-out infinite;
+}
+
+.deimos-page .sphere-label-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #fff 20%, #ff6680 60%, var(--hot) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(255, 45, 85, 0.55));
+  line-height: 1;
+}
+
+.deimos-page .sphere-label-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.48rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 45, 85, 0.08);
+  border: 1px solid rgba(255, 45, 85, 0.2);
+  border-radius: 100px;
+  padding: 0.15rem 0.6rem;
+}
+
+
+.deimos-page .orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(196, 30, 58, 0.25);
+  transform-origin: center;
+  animation: deimos-orbit-spin linear infinite;
+}
+
+.deimos-page .orbit-1 {
+  width: 270px;
+  height: 80px;
+  margin-left: -135px;
+  margin-top: -40px;
+  animation-duration: 8s;
+  border-color: rgba(196, 30, 58, 0.3);
+  box-shadow: 0 0 8px rgba(196, 30, 58, 0.1);
+}
+
+.deimos-page .orbit-2 {
+  width: 320px;
+  height: 100px;
+  margin-left: -160px;
+  margin-top: -50px;
+  animation-duration: 13s;
+  animation-direction: reverse;
+  border-color: rgba(196, 30, 58, 0.15);
+}
+
+.deimos-page .orbit-3 {
+  width: 380px;
+  height: 120px;
+  margin-left: -190px;
+  margin-top: -60px;
+  animation-duration: 20s;
+  border-color: rgba(196, 30, 58, 0.08);
+}
+
+@keyframes deimos-orbit-spin {
+  from { transform: rotateX(75deg) rotate(0deg); }
+  to { transform: rotateX(75deg) rotate(360deg); }
+}
+
+.deimos-page .orbit-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  margin-left: -3px;
+  background: var(--hot);
+  box-shadow: 0 0 10px var(--hot), 0 0 20px rgba(255, 45, 85, 0.5);
+}
+
+.deimos-page .eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  background: rgba(196, 30, 58, 0.08);
+  border: 1px solid rgba(196, 30, 58, 0.2);
+  padding: 0.35rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.deimos-page .hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+}
+
+.deimos-page .hero-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--crimson), var(--hot));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.deimos-page .hero-sub {
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  font-weight: 400;
+}
+
+.deimos-page .hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.deimos-page .btn-primary {
+  background: var(--crimson);
+  color: #fff;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(196, 30, 58, 0.4);
+  transition: all 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.deimos-page .btn-primary:hover {
+  background: var(--hot);
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(255, 45, 85, 0.5);
+}
+
+.deimos-page .btn-secondary {
+  background: transparent;
+  color: var(--text);
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.deimos-page .btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.deimos-page .hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.deimos-page .stat { text-align: center; }
+
+.deimos-page .stat-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.deimos-page .stat-num span { color: var(--crimson); }
+
+.deimos-page .stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.deimos-page section {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 2rem;
+}
+
+.deimos-page .container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.deimos-page .section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.deimos-page .section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.deimos-page .section-sub {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.deimos-page .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 4rem;
+}
+
+.deimos-page .feat-card {
+  background: var(--void);
+  padding: 2.5rem 2rem;
+  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.deimos-page .feat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.deimos-page .feat-card:hover {
+  background: rgba(196, 30, 58, 0.04);
+}
+
+.deimos-page .feat-card:hover::before { opacity: 1; }
+
+.deimos-page .feat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(196, 30, 58, 0.1);
+  border: 1px solid rgba(196, 30, 58, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 1.25rem;
+}
+
+.deimos-page .feat-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.deimos-page .feat-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.deimos-page .feat-tag {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--crimson);
+  background: rgba(196, 30, 58, 0.08);
+  border: 1px solid rgba(196, 30, 58, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.deimos-page .how-section { background: var(--surface); }
+
+.deimos-page .steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+  position: relative;
+}
+
+.deimos-page .steps::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  left: calc(16.66% + 1rem);
+  right: calc(16.66% + 1rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--crimson), var(--crimson), transparent);
+  opacity: 0.3;
+}
+
+.deimos-page .step { text-align: center; position: relative; }
+
+.deimos-page .step-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--void);
+  border: 1px solid rgba(196, 30, 58, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--crimson);
+  margin: 0 auto 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.deimos-page .step-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.deimos-page .step-desc {
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.deimos-page .demo-section { overflow: hidden; }
+
+.deimos-page .demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.deimos-page .demo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.deimos-page .demo-ticker-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+}
+
+.deimos-page .demo-ticker-row:last-child { border-bottom: none; }
+
+.deimos-page .sig-buy { color: #22c55e; font-weight: 600; }
+.deimos-page .sig-sell { color: #ef4444; font-weight: 600; }
+.deimos-page .sig-hold { color: #f0b429; font-weight: 600; }
+
+.deimos-page .sig-badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+}
+
+.deimos-page .sig-badge.buy {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.deimos-page .sig-badge.sell {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.deimos-page .sig-badge.hold {
+  background: rgba(240, 180, 41, 0.1);
+  color: #f0b429;
+  border: 1px solid rgba(240, 180, 41, 0.2);
+}
+
+.deimos-page .report-card {
+  background: linear-gradient(135deg, rgba(196, 30, 58, 0.06), rgba(10, 10, 15, 0));
+  border: 1px solid rgba(196, 30, 58, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.deimos-page .report-card::before {
+  content: 'AI REPORT';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--crimson);
+  letter-spacing: 0.15em;
+  background: rgba(196, 30, 58, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+
+.deimos-page .report-line {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.8;
+  border-left: 2px solid rgba(196, 30, 58, 0.3);
+  padding-left: 1rem;
+}
+
+.deimos-page .report-line strong { color: var(--text); }
+
+.deimos-page .pricing-section { background: var(--surface); }
+
+.deimos-page .pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+  align-items: start;
+}
+
+.deimos-page .price-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.deimos-page .price-card:hover { transform: translateY(-4px); }
+
+.deimos-page .price-card.featured {
+  background: linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(10, 10, 15, 0.8));
+  border-color: rgba(196, 30, 58, 0.4);
+  box-shadow: 0 0 50px rgba(196, 30, 58, 0.15);
+}
+
+.deimos-page .price-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--crimson);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.deimos-page .price-plan {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.deimos-page .price-amount {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.deimos-page .price-amount sup {
+  font-size: 1.2rem;
+  vertical-align: super;
+}
+
+.deimos-page .price-period {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.deimos-page .price-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.deimos-page .price-features li {
+  font-size: 0.83rem;
+  color: var(--muted);
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.deimos-page .price-features li:last-child { border-bottom: none; }
+
+.deimos-page .price-features li::before {
+  content: '✦';
+  color: var(--crimson);
+  font-size: 0.5rem;
+}
+
+.deimos-page .price-features li.dim::before { color: var(--muted); }
+
+.deimos-page .price-features li.dim {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.deimos-page .btn-plan {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.deimos-page .btn-plan.primary {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(196, 30, 58, 0.35);
+}
+
+.deimos-page .btn-plan.primary:hover {
+  background: var(--hot);
+  box-shadow: 0 0 40px rgba(255, 45, 85, 0.5);
+}
+
+.deimos-page .btn-plan:not(.primary):hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.deimos-page .waitlist-section {
+  text-align: center;
+  padding: 7rem 2rem;
+}
+
+.deimos-page .waitlist-inner {
+  max-width: 560px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(196, 30, 58, 0.08), rgba(10, 10, 15, 0));
+  border: 1px solid rgba(196, 30, 58, 0.2);
+  border-radius: 20px;
+  padding: 4rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.deimos-page .waitlist-inner::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 30, 58, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.deimos-page .waitlist-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.deimos-page .waitlist-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.deimos-page .waitlist-form {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.deimos-page .waitlist-input {
+  flex: 1;
+  min-width: 240px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  color: var(--text);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.deimos-page .waitlist-input::placeholder { color: var(--muted); }
+
+.deimos-page .waitlist-input:focus { border-color: rgba(196, 30, 58, 0.5); }
+
+.deimos-page .waitlist-btn {
+  background: var(--crimson);
+  color: #fff;
+  padding: 0.85rem 1.75rem;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+  box-shadow: 0 0 25px rgba(196, 30, 58, 0.4);
+}
+
+.deimos-page .waitlist-btn:hover {
+  background: var(--hot);
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px rgba(255, 45, 85, 0.5);
+}
+
+.deimos-page .waitlist-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 1rem;
+}
+
+.deimos-page .waitlist-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.deimos-page .live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: deimos-pulse-dot 1.5s ease-in-out infinite;
+  box-shadow: 0 0 6px #22c55e;
+}
+
+.deimos-page footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.deimos-page .footer-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.deimos-page .footer-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  opacity: 0.6;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.deimos-page .footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.deimos-page .footer-link {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-decoration: none;
+}
+
+.deimos-page .footer-link:hover { color: var(--text); }
+
+.deimos-page .divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+.deimos-page .reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.deimos-page .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.deimos-page .reveal-delay-1 { transition-delay: 0.1s; }
+.deimos-page .reveal-delay-2 { transition-delay: 0.2s; }
+.deimos-page .reveal-delay-3 { transition-delay: 0.3s; }
+.deimos-page .reveal-delay-4 { transition-delay: 0.4s; }
+
+.deimos-page .success-msg {
+  display: none;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: #22c55e;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.deimos-page .success-msg.show { display: block; }
+
+@media (max-width: 768px) {
+  .deimos-page nav:not(.deimos-nav) { padding: 1rem 1.25rem; }
+  .deimos-page nav:not(.deimos-nav) .nav-links { display: none; }
+  .deimos-page .pricing-grid { grid-template-columns: 1fr; }
+  .deimos-page .steps { grid-template-columns: 1fr; }
+  .deimos-page .steps::before { display: none; }
+  .deimos-page .demo-grid { grid-template-columns: 1fr; }
+  .deimos-page .waitlist-inner { padding: 2.5rem 1.5rem; }
+  .deimos-page .hero-title { font-size: 2.2rem; }
+}

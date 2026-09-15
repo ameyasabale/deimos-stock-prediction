@@ -1,0 +1,474 @@
+/* Shared Deimos design tokens + app shell (predict, login, signup) */
+
+.deimos-app {
+  --void: #0a0a0f;
+  --surface: #0f0a12;
+  --card: #120a14;
+  --border: #ffffff0d;
+  --crimson: #c41e3a;
+  --hot: #ff2d55;
+  --glow: #ff2d5540;
+  --text: #e8edf2;
+  --muted: #6b7f90;
+  --dim: #4a5a6a;
+  min-height: 100vh;
+  background: var(--void);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+.deimos-app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+.deimos-app > * {
+  position: relative;
+  z-index: 1;
+}
+
+.deimos-nav {
+  --void: #0a0a0f;
+  --border: #ffffff0d;
+  --crimson: #c41e3a;
+  --hot: #ff2d55;
+  --glow: #ff2d5540;
+  --text: #e8edf2;
+  --muted: #6b7f90;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 2rem;
+  background: rgba(10, 10, 15, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+}
+
+.deimos-nav-landing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.1rem 2.5rem;
+  background: rgba(10, 10, 15, 0.85);
+}
+
+.deimos-nav .nav-center {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.deimos-nav .nav-anchor-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.deimos-nav .nav-anchor-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.deimos-nav .nav-anchor-link:hover {
+  color: var(--text);
+}
+
+.deimos-nav .logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.deimos-nav .logo-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--crimson);
+  box-shadow: 0 0 12px var(--hot);
+  animation: deimos-app-pulse 2s ease-in-out infinite;
+}
+
+@keyframes deimos-app-pulse {
+  0%, 100% { box-shadow: 0 0 12px var(--hot); }
+  50% { box-shadow: 0 0 22px var(--hot), 0 0 40px var(--glow); }
+}
+
+.deimos-nav .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.deimos-nav .nav-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--muted);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.deimos-nav .nav-pill:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.deimos-nav .nav-pill.active {
+  background: rgba(196, 30, 58, 0.1);
+  border-color: rgba(196, 30, 58, 0.2);
+  color: var(--hot);
+}
+
+.deimos-nav .nav-pill-icon {
+  font-size: 0.85rem;
+}
+
+.deimos-nav .nav-pill-label {
+  font-size: 0.56rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+}
+
+.deimos-nav .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.deimos-nav .nav-home-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.deimos-nav .nav-home-link:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.deimos-nav .status-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.62rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+}
+
+.deimos-nav .status-pill.online {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.deimos-nav .status-pill.offline {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.deimos-nav .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: deimos-app-pulse 2s infinite;
+}
+
+.deimos-nav .status-dot.online { background: #22c55e; }
+.deimos-nav .status-dot.offline { background: #ef4444; }
+
+.deimos-nav .nav-cta-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  box-shadow: none;
+  color: var(--text);
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.deimos-nav .nav-cta-outline:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.deimos-nav .nav-cta-primary {
+  background: var(--crimson);
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 20px rgba(196, 30, 58, 0.3);
+  white-space: nowrap;
+}
+
+.deimos-nav .nav-cta-primary:hover {
+  background: var(--hot);
+  box-shadow: 0 0 30px rgba(255, 45, 85, 0.5);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .deimos-nav {
+    padding: 0.75rem 1rem;
+  }
+  .deimos-nav-landing {
+    padding: 1rem 1.25rem;
+  }
+  .deimos-nav .nav-home-link {
+    display: none;
+  }
+  .deimos-nav .nav-anchor-links {
+    display: none;
+  }
+  .deimos-nav .nav-pill-label {
+    display: none;
+  }
+  .deimos-nav .nav-pill {
+    padding: 0.45rem 0.55rem;
+  }
+  .deimos-nav .status-pill span:last-child {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .deimos-nav .nav-cta-primary .full-label {
+    display: none;
+  }
+  .deimos-nav .nav-cta-primary .short-label {
+    display: inline !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   UI POLISH — Micro-animations & Visual Refinements
+   ═══════════════════════════════════════════════════ */
+
+/* Card entrance animation */
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Signal badge pulse */
+@keyframes signalPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.3); }
+  50% { box-shadow: 0 0 12px 4px rgba(196, 30, 58, 0.15); }
+}
+
+/* Glow border animation */
+@keyframes glowBorder {
+  0%, 100% { border-color: rgba(196, 30, 58, 0.15); }
+  50% { border-color: rgba(196, 30, 58, 0.4); }
+}
+
+/* Number counter shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Skeleton loading */
+@keyframes skeletonLoad {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Smooth scale on hover */
+.deimos-card-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.deimos-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(196, 30, 58, 0.08);
+  border-color: rgba(196, 30, 58, 0.25) !important;
+}
+
+/* Gradient text utility */
+.deimos-gradient-text {
+  background: linear-gradient(135deg, #e8edf2 0%, #c41e3a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Skeleton loader bar */
+.deimos-skeleton {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonLoad 1.5s infinite;
+  border-radius: 6px;
+}
+
+/* Signal badge styles */
+.deimos-signal-buy {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+  animation: signalPulse 2s ease-in-out infinite;
+}
+.deimos-signal-sell {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  animation: signalPulse 2s ease-in-out infinite;
+}
+.deimos-signal-hold {
+  background: rgba(240, 180, 41, 0.12);
+  border: 1px solid rgba(240, 180, 41, 0.3);
+  color: #f0b429;
+}
+
+/* Glassmorphism panel */
+.deimos-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+}
+
+/* Active tab indicator glow */
+.deimos-tab-active {
+  position: relative;
+}
+.deimos-tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c41e3a, transparent);
+  border-radius: 1px;
+}
+
+/* Smooth scroll for all containers */
+.deimos-smooth-scroll {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(196, 30, 58, 0.2) transparent;
+}
+
+/* Button hover glow */
+.deimos-btn-glow {
+  transition: all 0.25s ease;
+}
+.deimos-btn-glow:hover {
+  box-shadow: 0 0 20px rgba(196, 30, 58, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Tooltip animation */
+@keyframes tooltipFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Recharts tooltip customization */
+.recharts-tooltip-wrapper {
+  animation: tooltipFade 0.15s ease !important;
+}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE RESPONSIVENESS (Enhanced)
+   ═══════════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+  /* Stack grid layouts */
+  .deimos-grid-responsive {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Full-width cards */
+  .deimos-card-responsive {
+    min-width: unset !important;
+    flex: 1 1 100% !important;
+  }
+
+  /* Smaller fonts on mobile */
+  .deimos-mobile-compact {
+    font-size: 0.7rem !important;
+  }
+
+  /* Touch-friendly buttons */
+  button, a[role="button"] {
+    min-height: 38px;
+    min-width: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  .deimos-nav .nav-links {
+    gap: 0.15rem;
+  }
+  .deimos-nav .nav-pill {
+    padding: 0.35rem 0.4rem;
+  }
+  .deimos-nav .nav-pill-icon {
+    font-size: 0.75rem;
+  }
+  .deimos-nav .logo {
+    font-size: 1rem;
+  }
+  .deimos-nav .status-pill {
+    display: none;
+  }
+}
+
+/* Print styles (hide nav, chat) */
+@media print {
+  .deimos-nav, .deimos-chat-fab { display: none !important; }
+}
