@@ -16,7 +16,7 @@ dist/
 .env*.local
 
 # ── ML Model files (too large for GitHub) ──
-flask_v3/saved_models/
+backend/saved_models/
 
 # ── Python cache ──
 __pycache__/

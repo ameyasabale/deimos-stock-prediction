@@ -140,7 +140,7 @@ cd stock_markey_prediction
 
 ### 2. Setup Flask Backend
 ```bash
-cd flask_v3
+cd backend
 pip install -r requirements.txt
 python app.py
 ```
@@ -148,7 +148,7 @@ Flask runs on `http://localhost:5000`
 
 ### 3. Setup Next.js Frontend
 ```bash
-cd nextjs_sidebyside
+cd frontend
 npm install
 ```
 
@@ -168,7 +168,7 @@ App runs on `http://localhost:3000`
 If you want to save predictions to MSSQL:
 ```bash
 # Run the SQL setup script in SQL Server Management Studio
-# File: flask_v3/mssql_setup.sql
+# File: backend/mssql_setup.sql
 ```
 
 ---
@@ -176,7 +176,7 @@ If you want to save predictions to MSSQL:
 ## 📁 Project Structure
 
 ```
-├── flask_v3/                    # Flask Backend
+├── backend/                    # Flask Backend
 │   ├── app.py                   # Main API server (3000+ lines)
 │   ├── multi_agent.py           # 5 AI agents + orchestrator
 │   ├── reddit_sentiment.py      # Reddit scraper + NLP sentiment
@@ -190,7 +190,7 @@ If you want to save predictions to MSSQL:
 │   ├── db_hourly.py             # Hourly predictions scheduler
 │   └── requirements.txt         # Python dependencies
 │
-├── nextjs_sidebyside/           # Next.js Frontend
+├── frontend/           # Next.js Frontend
 │   ├── app/
 │   │   ├── predict/page.js      # Main prediction UI
 │   │   ├── dashboard/page.js    # Dashboard
